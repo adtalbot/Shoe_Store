@@ -9,4 +9,10 @@ describe(Store) do
     test_store = Store.new({:name => ""})
     expect(test_store.save()).to(eq(false))
   end
+  describe('#capitalize') do
+    it('capitalizes the first letter of store name') do
+      test_store = Store.new({:name => 'dicks'})
+      expect(test_store.name().capitalize()).to(eq('Dicks'))
+    end
+  end
 end
