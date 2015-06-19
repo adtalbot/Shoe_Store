@@ -1,0 +1,32 @@
+<h1><%= @store.name() %></h1>
+
+<h3>Select all shoes that this store has in stock:</h3>
+
+<% if @shoes.any?() %>
+  <form action='/stores/<%= @store.id %>' method='post'>
+    <input type='hidden' name='_method' value='patch'>
+    <% @shoes.each() do |shoe| %>
+      <div class='checkbox'>
+        <label>
+          <input type='checkbox' name='shoes_ids[]' value='<%= shoe.id() %>'><%= shoe.name() %>
+        </label>
+      </div>
+    <% end %>
+
+    <button type='submit'>Add shoes</button>
+  </form>
+<% end %>
+
+<% if @store.shoes().any?() %>
+  <h3>Here are all the shoes at this store:</h3>
+
+  <ul>
+    <% @store.shoes().each() do |shoe| %>
+    <li><%= shoe.name() %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no shoes yet! <a href='/shoes'>Add shoes here<a/></p>
+<% end %>
+
+<a href='/'>Return to Main Page</a>

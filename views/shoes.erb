@@ -1,0 +1,25 @@
+<h1>Welcome to the Shoe page</h1>
+
+<p>Add a shoe to the database:</p>
+
+<form action='/shoes' method='post'>
+  <label for='name'>Shoe Name:</label>
+  <input id='name' name='name' type='text'>
+
+  <button type='submit'>Add Shoe</button>
+</form>
+
+<% if @shoes.any?() %>
+  <p>Click on a shoe to find more information about them and assign them to different stores:</p>
+
+  <ul>
+    <% @shoes.each do |shoe| %>
+      <li><a href='/shoes/<%= shoe.id() %>'><%= shoe.name() %></a></li>
+      <% end %>
+  </ul>
+<% else %>
+  <p>There are no shoes added yet!</p>
+<% end %>
+
+<p><a href='/stores'>See all stores</a></p>
+<p><a href='/'>Return to Main Page</a></p>
